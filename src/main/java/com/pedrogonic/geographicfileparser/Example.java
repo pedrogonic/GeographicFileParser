@@ -45,7 +45,7 @@ public class Example {
             }
 
         } else {
-            System.out.println("Empty Examples folder! Drop a KMZ or KML file ther to test this library.");
+            System.out.println("Empty Examples folder! Drop a KMZ or KML file there to test this library.");
         }
 
         System.out.println("\n==============END MAIN==============\n");
