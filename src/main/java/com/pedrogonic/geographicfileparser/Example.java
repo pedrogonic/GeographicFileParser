@@ -19,17 +19,33 @@ public class Example {
 
         File dir =  new File("Examples/");
 
-        for (File file : dir.listFiles()) {
+        if (dir.listFiles().length > 0) {
 
-            try {
+            for (File file : dir.listFiles()) {
 
-                Parser parser = new Parser(file);
-                parser.parse();
+                if (    // Dumb check for KMZ/KML files. Parser class does it better.
+                        file.getName().toLowerCase().endsWith(".kmz")
+                        ||
+                        file.getName().toLowerCase().endsWith(".kml")
+                        ) {
 
-            } catch (Exception ex) {
-                Logger.getLogger(Example.class.getName()).log(Level.SEVERE, null, ex);
+                    try {
+
+                        Parser parser = new Parser(file);
+                        parser.parse();
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(Example.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                } else {
+                    System.out.println("Ignored file: " + file.getName());
+                }
+
             }
 
+        } else {
+            System.out.println("Empty Examples folder! Drop a KMZ or KML file ther to test this library.");
         }
 
         System.out.println("\n==============END MAIN==============\n");
